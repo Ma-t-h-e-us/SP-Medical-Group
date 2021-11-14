@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-wrap: normal;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* BANNER 1 */
+
+.mainHome {
+    /* margin-top: 80px; */
+}
+
+.Banner1{
+    width: 100%;
+    height: 300px;
+    background-image: url(../img/logoSubtitulo.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+}
+
+.fundoBanner {
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 242, 219, 0.1);
+    border: 2px solid rgba(3, 166, 166, 0.85);
+}
+
+/* BANNER 2 */
+
+.Banner2 {
+    background-color:#0BF4DE;;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Banner2 img {
+    height: 100%;
+}
+
+.Banner2 button {
+    margin-right: 300px;
+    height: 80px;
+    width: 300px;
+    background: rgba(4, 138, 191, 0.75);
+    box-shadow: inset 0px -2px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: white;
+}
+
+/* SobreNos  */
+
+.SobreNos {
+    display: flex;
+    align-items: center;
+    margin-top: 36px;
+    margin-bottom: 40px;
+    height: 600px;
+}
+
+.SobreNos h1 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+
+}
+
+.SobreNos hr {
+    width: 117px;
+    height: 0px;
+    border: 7px solid #0BF4DE;
+    transform: matrix(1, -0.01, 0.01, 1, 0, 0);
+    margin-bottom: 32px;
+}
+
+.SobreNos p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+}
+
+.ConteudoSobreNos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* UseMascara  */
+
+.UseMascara {
+    background-image: url(../img/UseMascara.png);
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.UseMascara h1 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 96px;
+    color:white;
+}

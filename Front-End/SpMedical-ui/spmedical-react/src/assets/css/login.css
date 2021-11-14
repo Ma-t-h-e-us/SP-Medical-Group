@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-wrap: normal;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.mainLogin {
+    background-image:url(../img/loginFundo.png);
+    background-repeat: round;
+    height: 789px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.areaFormularioLogin {
+    width: 550px;
+    height: 650px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.areaFormularioLogin img {
+    width: 475px;
+    height: 200px;
+}
+
+.formularioLogin {
+    height: 337px;
+    width: 315px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.formularioLogin input {
+    background: #ffffff;
+    box-shadow: 0px 3px 10px 2px #00000040;
+    border-radius: 15px;
+    border-color: transparent;
+    height: 55px;
+    width: 300px;
+    font-size: 24px;
+}
+
+::-webkit-input-placeholder{ 
+    font-weight: bold;
+    font-size: 24px;
+    color: #A49D9D;
+    padding-left: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.formularioLogin button {
+    width: 225px;
+    height: 55px;
+    background: #048ABF;
+    border-radius: 15px;
+    border-color: transparent;
+    color: white;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.linhaEsqueceuSenha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.linhaEsqueceuSenha hr {
+    width: 40px;
+    height: 1px;
+    border: 1px solid #048ABF;
+}
+
+.linhaEsqueceuSenha a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #048ABF;
+    text-decoration: none;
+}

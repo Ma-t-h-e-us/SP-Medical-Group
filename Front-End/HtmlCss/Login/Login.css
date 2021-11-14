@@ -15,6 +15,7 @@
 
 main {
     background-image:url(../assets/loginFundo.png);
+    background-repeat: round;
     height: 789px;
     display: flex;
     justify-content: center;
@@ -52,6 +53,7 @@ main {
     border-color: transparent;
     height: 55px;
     width: 300px;
+    font-size: 24px;
 }
 
 ::-webkit-input-placeholder{ 
