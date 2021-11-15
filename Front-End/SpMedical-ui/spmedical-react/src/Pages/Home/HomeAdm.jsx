@@ -22,7 +22,7 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <HeaderComum />
+                <HeaderAdm />
                 <main className="mainHome">
                     <section className="Banner1">
                         <div className="fundoBanner"></div>

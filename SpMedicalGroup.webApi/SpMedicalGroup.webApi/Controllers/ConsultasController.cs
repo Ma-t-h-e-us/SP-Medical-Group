@@ -75,7 +75,7 @@ namespace SpMedicalGroup.webApi.Controllers
             });
         }
 
-        [Authorize(Roles = "1,3")]
+        [Authorize(Roles = "2,3")]
         [HttpGet("Listar/Minhas")]
         public IActionResult ListarMinhasConsultas()
         {
@@ -154,7 +154,7 @@ namespace SpMedicalGroup.webApi.Controllers
             });
         }
 
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult ListarTodas()
         {

@@ -31,13 +31,14 @@ export default class Login extends Component {
             .then((resposta) => {
                 if (resposta.status === 200) {
                     localStorage.setItem('usuario-login', resposta.data.token);
-                    this.setState({ loading: true });
+                    this.setState({ loading: false });
                     //Base64 recebe o payload do token
                     let base64 = localStorage.getItem('usuario-login').split('.')[1];
                     console.log(base64);
                     console.log(this.props);
 
-                    this.props.history.push('/Home');
+                    //DANDO ERRO POR CONTA DAS ROTAS INEXISTENTES ATÉ AGORA
+                    // this.props.history.push('/Home');
                 }
             })
 

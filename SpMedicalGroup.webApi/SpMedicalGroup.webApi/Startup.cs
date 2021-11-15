@@ -48,6 +48,17 @@ namespace SpMedicalGroup.webApi
                     };
                 });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                                builder =>
+                                {
+                                    builder.WithOrigins("http://localhost:3000")
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod();
+                                });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -76,6 +87,7 @@ namespace SpMedicalGroup.webApi
                 c.RoutePrefix = string.Empty;
             });
 
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
             app.UseAuthentication();
 
