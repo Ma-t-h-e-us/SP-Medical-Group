@@ -36,9 +36,10 @@ export default class Login extends Component {
                     let base64 = localStorage.getItem('usuario-login').split('.')[1];
                     console.log(base64);
                     console.log(this.props);
+                    console.log(parseJwt().role)
 
                     //DANDO ERRO POR CONTA DAS ROTAS INEXISTENTES ATÉ AGORA
-                    // this.props.history.push('/Home');
+                    this.props.history.push('/Home');
                 }
             })
 

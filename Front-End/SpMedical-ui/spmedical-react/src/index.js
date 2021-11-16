@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter as Router, Redirect, Routes } from 'react-router-dom';
+import {
+  Route,
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
 import { parseJwt, usuarioAutenticado } from './services/auth';
 
 //Páginas:
@@ -11,25 +16,63 @@ import NovaConsulta from './Pages/NovaConsulta/NovaConsulta';
 
 import reportWebVitals from './reportWebVitals';
 
+const PermissaoAdm = ({ component: Component }) => (
+  <Route
+    render={(props) =>
+      usuarioAutenticado() && parseJwt().role === '1' ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/login" />
+      )
+    }
+  />
+);
+
+const PermissaoPaciente = ({ component: Component }) => (
+  <Route
+    render={(props) =>
+      usuarioAutenticado() && parseJwt().role === '3' ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/Home" />
+      )
+    }
+  />
+);
+const PermissaoMedico = ({ component: Component }) => (
+  <Route
+    render={(props) =>
+      usuarioAutenticado() && parseJwt().role === '2' ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/Home" />
+      )
+    }
+  />
+);
+
 const routing = (
   <Router>
     <div>
-      <Routes>
-        <Route path="/" component={Home} /> {/* Home */}
+      <Switch>
+        <Route exact path="/" component={Login} /> {/* Home */}
+        <Route path="/Home" component={Home} /> {/* Login */}
         <Route path="/Login" component={Login} /> {/* Login */}
-      </Routes>
+        <Route path="/ListarConsultas" component={ListarConsultas} /> {/* ListarConsultas  */}
+        <PermissaoAdm path="/NovaConsulta" component={NovaConsulta} /> 
+      </Switch>
     </div>
   </Router>
 );
 
-// ReactDOM.render(routing, document.getElementById('root'));
+ReactDOM.render(routing, document.getElementById('root'));
 
-ReactDOM.render(
-  <React.StrictMode>
-    <ListarConsultas />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <ListarConsultas />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -7603,19 +7603,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\T-Gamer\\.nuget\\packages\\": {}
+    "C:\\Users\\43866300824\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\T-Gamer\\Desktop\\SP Medical Group\\SpMedicalGroup.webApi\\SpMedicalGroup.webApi\\SpMedicalGroup.webApi.csproj",
+      "projectUniqueName": "C:\\Users\\43866300824\\Desktop\\SP-Medical-Group\\SpMedicalGroup.webApi\\SpMedicalGroup.webApi\\SpMedicalGroup.webApi.csproj",
       "projectName": "SpMedicalGroup.webApi",
-      "projectPath": "C:\\Users\\T-Gamer\\Desktop\\SP Medical Group\\SpMedicalGroup.webApi\\SpMedicalGroup.webApi\\SpMedicalGroup.webApi.csproj",
-      "packagesPath": "C:\\Users\\T-Gamer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\T-Gamer\\Desktop\\SP Medical Group\\SpMedicalGroup.webApi\\SpMedicalGroup.webApi\\obj\\",
+      "projectPath": "C:\\Users\\43866300824\\Desktop\\SP-Medical-Group\\SpMedicalGroup.webApi\\SpMedicalGroup.webApi\\SpMedicalGroup.webApi.csproj",
+      "packagesPath": "C:\\Users\\43866300824\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\43866300824\\Desktop\\SP-Medical-Group\\SpMedicalGroup.webApi\\SpMedicalGroup.webApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\T-Gamer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\43866300824\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7702,7 +7702,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

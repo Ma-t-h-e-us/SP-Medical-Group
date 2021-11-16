@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
 //img:
 import instagram from '../../assets/img/instagram.png'
@@ -12,7 +13,7 @@ class Footer extends Component {
                 <div class="fundoFooter"></div>
                 <div class="conteudoFooter container">
                     <div class="insta">
-                        <img src={instagram} alt="instagram"></img>
+                        <Link to="/Home"><img src={instagram} alt="instagram"></img></Link>    
                         <p>@SPMG</p>
                     </div>
                     <div class="logoFooter">
@@ -20,7 +21,7 @@ class Footer extends Component {
                         <p>SP.Medical.group@gmail.com</p>
                     </div>
                     <div class="twitter">
-                        <img src={twitter} alt="twitter"></img>
+                        <Link to="/Home"><img src={twitter} alt="twitter"></img></Link>
                         <p>@SPMG</p>
                     </div>
                 </div>

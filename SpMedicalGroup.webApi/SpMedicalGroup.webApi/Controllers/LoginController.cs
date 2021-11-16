@@ -38,7 +38,8 @@ namespace SpMedicalGroup.webApi.Controllers
                     {
                         new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email),
                         new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
-                        new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoDeUsuario.ToString())
+                        new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoDeUsuario.ToString()),
+                        new Claim( "role", usuarioBuscado.IdTipoDeUsuario.ToString() )
                     };
 
                     var Key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("SenaiSpMedicalGroup.webapi"));

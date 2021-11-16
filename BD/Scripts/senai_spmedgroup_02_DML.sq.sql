@@ -66,3 +66,7 @@ values (3,1,1,'1/2/2021 15:00',''),
 	   (3,6,3,'3/8/2021 15:00',''),
 	   (1,7,3,'3/9/2021 11:00','')
 go
+
+insert into usuario(idTipoDeUsuario, email, senha)
+values (1, 'adm@adm.com', '123456')
+go

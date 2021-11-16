@@ -15,6 +15,7 @@
 
 .main_ListarConsultas {
     background-image: url(../img/fundoMedico.png);
+    background-repeat: round;
     height: 789px;
     display: flex;
     justify-content: center;

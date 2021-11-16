@@ -11,7 +11,6 @@ import '../../assets/css/Header.css';
 
 //Componentes:
 import HeaderComum from '../../Components/Header/HeaderComum'
-import HeaderAdm from '../../Components/Header/HeaderAdm'
 import Footer from '../../Components/Footer/footer'
 
 //Img:
@@ -29,7 +28,7 @@ export default class Home extends Component {
                     </section>
                     <section className="Banner2">
                         <img src={maoMedicos} className="maoMedicos" alt="mão de médicos com luvas"></img>
-                        <button>Ver Consultas</button>
+                        <Link to="/ListarConsultas"><button>Ver Consultas</button></Link>
                     </section>
                     <section className="SobreNos container">
                         <div className="ConteudoSobreNos">
