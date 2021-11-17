@@ -41,7 +41,7 @@ namespace SpMedicalGroup.webApi
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("senaispmedicalgroupa17webapi")),
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("SenaiSpMedicalGroup.webapi")),
                         ClockSkew = TimeSpan.FromMinutes(40),
                         ValidIssuer = "SpMedicalGroup.webApi",
                         ValidAudience = "SpMedicalGroup.webApi"
@@ -79,7 +79,6 @@ namespace SpMedicalGroup.webApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -89,7 +88,8 @@ namespace SpMedicalGroup.webApi
 
             app.UseCors("CorsPolicy");
             app.UseAuthentication();
-            app.UseAuthentication();
+            app.UseRouting();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

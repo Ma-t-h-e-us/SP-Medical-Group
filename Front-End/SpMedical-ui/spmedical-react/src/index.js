@@ -13,6 +13,7 @@ import Login from './Pages/Login/Login.jsx'
 import Home from './Pages/Home/Home.jsx'
 import ListarConsultas from './Pages/ListarConsultas/ListarConsultas';
 import NovaConsulta from './Pages/NovaConsulta/NovaConsulta';
+import NotFound from './Pages/NotFound/NotFound';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -60,6 +61,8 @@ const routing = (
         <Route path="/Login" component={Login} /> {/* Login */}
         <Route path="/ListarConsultas" component={ListarConsultas} /> {/* ListarConsultas  */}
         <PermissaoAdm path="/NovaConsulta" component={NovaConsulta} /> 
+        <Route path="/NotFound" component={NotFound} /> {/* Página não encontrada  */}
+        <Redirect to="/NotFound" />
       </Switch>
     </div>
   </Router>

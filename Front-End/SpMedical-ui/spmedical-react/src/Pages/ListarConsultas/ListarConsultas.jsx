@@ -26,7 +26,8 @@ export default function ListarConsultas() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
-                    setListaConsultas(resposta.data)
+                    console.log(resposta.data)
+                    setListaConsultas(resposta.data.listaConsultas)
                 }
             })
 
@@ -45,29 +46,31 @@ export default function ListarConsultas() {
                         <hr></hr>
                     </div>
                     <div className="areaConsultas_ListarConsultas">
-                        {listaConsultas.map((consulta => {
+                        {listaConsultas.map((consulta) => {
                             return (
-                                <div className="cadaConsulta_ListarConsultas">
-                                    <div className="span_ListarConsultas">
-                                        <span>Médico:</span>
-                                        <p>{consulta.IdMedicoNavigation.Nome}</p>
+                                <div key={consulta.idConsulta}>
+                                    <div className="cadaConsulta_ListarConsultas">
+                                        <div className="span_ListarConsultas">
+                                            <span>Médico:</span>
+                                            <p>{consulta.idMedicoNavigation.nome}</p>
+                                        </div>
+                                        <div className="span_ListarConsultas">
+                                            <span>Paciente:</span>
+                                            <p>{consulta.IdPacienteNavigation.nomePaciente}</p>
+                                        </div>
+                                        <div className="span_ListarConsultas">
+                                            <span>{consulta.dataConsulta}</span>
+                                        </div>
+                                        <div className="span_ListarConsultas">
+                                            <span>{consulta.IdSituacaoNavigation.descricao}</span>
+                                        </div>
+                                        <svg height="33px" width="26px">
+                                            <a href=""><polygon points="0,0 26,0 13,33" className="setinhaConsultas" /></a>
+                                        </svg>
                                     </div>
-                                    <div className="span_ListarConsultas">
-                                        <span>Paciente:</span>
-                                        <p>{consulta.IdPacienteNavigation.NomePaciente}</p>
-                                    </div>
-                                    <div className="span_ListarConsultas">
-                                        <span>{consulta.DataConsulta}</span>
-                                    </div>
-                                    <div className="span_ListarConsultas">
-                                        <span>{consulta.IdSituacaoNavigation.Descricao}</span>
-                                    </div>
-                                    <svg height="33px" width="26px">
-                                        <a href=""><polygon points="0,0 26,0 13,33" className="setinhaConsultas" /></a>
-                                    </svg>
                                 </div>
                             )
-                        }))}
+                        })}
                     </div>
                 </section>
             </main>
