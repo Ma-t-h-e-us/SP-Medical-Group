@@ -26,8 +26,9 @@ export default function ListarConsultas() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
-                    console.log(resposta.data)
-                    setListaConsultas(resposta.data.listaConsultas)
+                    console.log(resposta.data.listaConsultas);
+                    setListaConsultas(resposta.data.listaConsultas);
+                    console.log(listaConsultas);
                 }
             })
 
