@@ -53,17 +53,17 @@ export default function ListarConsultas() {
                                     <div className="cadaConsulta_ListarConsultas">
                                         <div className="span_ListarConsultas">
                                             <span>Médico:</span>
-                                            <p>{consulta.idMedicoNavigation.nome}</p>
+                                            <p key={consulta.idConsulta}>{consulta.idMedicoNavigation.nome}</p>
                                         </div>
                                         <div className="span_ListarConsultas">
                                             <span>Paciente:</span>
-                                            <p>{consulta.IdPacienteNavigation.nomePaciente}</p>
+                                            <p key={consulta.idConsulta}>{consulta.IdPacienteNavigation.nomePaciente}</p>
                                         </div>
                                         <div className="span_ListarConsultas">
-                                            <span>{consulta.dataConsulta}</span>
+                                            <span key={consulta.idConsulta}>{consulta.dataConsulta}</span>
                                         </div>
                                         <div className="span_ListarConsultas">
-                                            <span>{consulta.IdSituacaoNavigation.descricao}</span>
+                                            <span key={consulta.idConsulta}>{consulta.IdSituacaoNavigation.descricao}</span>
                                         </div>
                                         <svg height="33px" width="26px">
                                             <a href=""><polygon points="0,0 26,0 13,33" className="setinhaConsultas" /></a>
