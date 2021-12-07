@@ -37,8 +37,6 @@ export default class Login extends Component {
                     console.log(base64);
                     console.log(this.props);
                     console.log(parseJwt().role)
-
-                    //DANDO ERRO POR CONTA DAS ROTAS INEXISTENTES ATÉ AGORA
                     this.props.history.push('/Home');
                 }
             })
