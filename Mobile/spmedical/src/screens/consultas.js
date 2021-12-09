@@ -24,7 +24,7 @@ export default class Consultas extends Component {
     }
 
     buscarConsultas = async () => {
-        const token = await  AsyncStorage.getItem('userToken')
+        const token = await AsyncStorage.getItem('userToken')
         const resposta = await api.get('Consultas/Listar/Minhas'
             , {
                 headers: {
@@ -46,35 +46,82 @@ export default class Consultas extends Component {
 
     render() {
         return (
-            <View style={styles.a}>
-                <Text>CONSULTAS</Text>
+            <View style={styles.conteudo}>
+                <Text style={styles.tituloConsultas}>Consultas</Text>
                 <FlatList
                     data={this.state.listaConsultas}
                     keyExtractor={item => item.idConsulta}
                     renderItem={this.renderItem}
+                // style={styles.flatList}
                 />
             </View>
 
         )
     }
 
+    renderSwitch(param) {
+        switch (param) {
+            case 1:
+                return <Text style={styles.realizada}>Realizada</Text>;
+            case 2:
+                return <Text style={styles.semDescricao}>Cancelada</Text>;
+            case 1:
+                return <Text style={styles.ajendada}>Ajendada</Text>;
+            default:
+                return <Text style={styles.semDescricao}>Situação desconhecida</Text>;
+        }
+    }
+
     renderItem = ({ item }) => (
-        <View style = {styles.a}>
-            <View>
-                <Text>{(item.dataConsulta)}</Text>
-                <Text>{(item.idSituacao)}</Text>
-            </View>
-            <View>
-                <Text>{(item.idMedicoNavigation.nome)}</Text>
-                <Text>{(item.idPacienteNavigation.nomePaciente)}</Text>
-                <Text>{item.descricao}</Text>
-            </View>
+        <View style={styles.cadaConsulta}>
+            
+                <Text>Data : {(item.dataConsulta)}</Text>
+                <Text>Situação : {this.renderSwitch(item.idSituacao)}</Text>
+            
+            
+                <Text>Médico : {(item.idMedicoNavigation.nome)}</Text>
+                <Text>Paciente : {(item.idPacienteNavigation.nomePaciente)}</Text>
+                {
+                    item.descricao != null ? <Text style={styles.semDescricao}>Sem Descrição</Text> : <Text>{item.descricao}</Text>
+                }
+            
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    a: {
-        flex: 1,
-    }
+    conteudo: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    tituloConsultas: {
+        fontSize: 48,
+        fontWeight: 'bold',
+        color: '#05F2DB',
+        marginTop: 20,
+        marginBottom: 20,
+    },
+    flatList: {
+        width: 400
+    },
+    cadaConsulta: {
+        width: 270,
+        height: 120,
+        marginBottom: 10,
+        marginTop: 10,
+        borderBottomColor: '#05F2DB',
+        borderBottomWidth: 3,
+        justifyContent: 'space-evenly'
+    },
+    semDescricao: {
+        color: 'red',
+        opacity : 0.6,
+        marginBottom: 20
+    },
+    realizada: {
+        color: 'green',
+    },
+    ajendada: {
+        color: 'blue',
+    },
 })
