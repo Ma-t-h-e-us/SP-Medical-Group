@@ -17,7 +17,7 @@ export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: 'roberto.possarle@spmedicalgroup.com.br',
+            email: 'ricardo.lemos@spmedicalgroup.com.br',
             senha: '123456',
         };
     }
@@ -118,5 +118,5 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 30,
         fontFamily: 'Open Sans',
-    }
+    },
 });

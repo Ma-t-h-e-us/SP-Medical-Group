@@ -20,9 +20,10 @@ export default class NovaConsulta extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            crm: 0,
-            cpf: 0,
-            data: new Date(),
+            idMedico: '',
+            idPaciente: '',
+            idSituacao: 0,
+            dataConsulta: new Date(),
             descricao: '',
             errorMessage: '',
             loading: false
@@ -34,29 +35,39 @@ export default class NovaConsulta extends Component {
         this.setState({ loading: true })
 
         let consulta = {
-            crm: this.state.crm,
-            cpf: this.state.cpf,
-            data: this.state.data,
+            idMedico: this.state.idMedico,
+            idPaciente: this.state.idPaciente,
+            idSituacao: 3,
+            dataConsulta: this.state.dataConsulta,
             descricao: this.state.descricao
         }
 
+        this.setState({ loading: true });
+
         axios
             .post('http://localhost:5000/api/Consultas', consulta, {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
-                },
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login') }
             })
             .then((resposta) => {
                 if (resposta.status === 201) {
                     console.log('Consulta cadastrada!');
-                    this.setState({ loading : false });
+                    this.setState({
+                        idMedico: '',
+                        idPaciente: '',
+                        idSituacao: 0,
+                        dataConsulta: new Date(),
+                        descricao: '',
+                        errorMessage: '',
+                        loading: false
+                    });
                 }
             })
             .catch((erro) => {
                 console.log(erro);
-                this.setState({ 
-                    errorMessage : 'Dados inválidos',
-                    loading : false });
+                this.setState({
+                    errorMessage: 'Dados inválidos',
+                    loading: false
+                });
             })
     };
 
@@ -64,42 +75,42 @@ export default class NovaConsulta extends Component {
         this.setState({ [campo.target.name]: campo.target.value });
     }
 
-render() {
-    return (
-        <div>
-            <HeaderComum />
-            <div class="conteudo container">
-                <img src={undraw_doctor2} alt="desenho médico com paciente" width="775px" height="645px"></img>
-                <div class="dadosConsulta">
-                    <h1>Dados da Consulta</h1>
-                    <hr></hr>
-                    <form action="" class="formularioCadastroConsulta" onSubmit={this.cadastrarConsulta}>
-                        <input type="text" value={this.state.crm} onChange={this.atualizaStateCampo} name="crm" id="" placeholder="CRM do médico"></input>
-                        <input type="number" value={this.state.cpf} onChange={this.atualizaStateCampo} name="cpf" placeholder="CPF do paciente"></input>
-                        <input type="date" value={this.state.data} onChange={this.atualizaStateCampo} name="data" placeholder="Data"></input>
-                        <input type="text" value={this.state.descricao} onChange={this.atualizaStateCampo} name="descricao" placeholder="Descrição"></input>
-                        <p style={{ color: 'red' }}>{this.state.errorMessage}</p>
+    render() {
+        return (
+            <div>
+                <HeaderComum />
+                <div class="conteudo container">
+                    <img src={undraw_doctor2} alt="desenho médico com paciente" width="775px" height="645px"></img>
+                    <div class="dadosConsulta">
+                        <h1>Dados da Consulta</h1>
+                        <hr></hr>
+                        <form action="" class="formularioCadastroConsulta" onSubmit={this.cadastrarConsulta}>
+                            <input type="text" value={this.state.idMedico} onChange={this.atualizaStateCampo} name="idMedico" id="" placeholder="ID do médico"></input>
+                            <input type="text" value={this.state.idPaciente} onChange={this.atualizaStateCampo} name="idPaciente" placeholder="ID do paciente"></input>
+                            <input type="date" value={this.state.dataConsulta} onChange={this.atualizaStateCampo} name="dataConsulta" placeholder="Data"></input>
+                            <input type="text" value={this.state.descricao} onChange={this.atualizaStateCampo} name="descricao" placeholder="Descrição"></input>
+                            <p style={{ color: 'red' }}>{this.state.errorMessage}</p>
                             {
                                 this.state.loading === true && (
                                     <button type="submit" disabled>Loading...</button>
                                 )
                             }
                             {
-                                 this.state.loading === false && (
+                                this.state.loading === false && (
                                     <button type="submit"
                                         disabled={
-                                            this.state.crm === '' || this.state.cpf === '' || this.state.data === '' || this.state.descricao === ''
+                                            this.state.idMedico === '' || this.state.idPaciente === '' || this.state.dataConsulta === '' || this.state.descricao === ''
                                                 ? 'none'
                                                 : ''
                                         }
                                     >Cadastar</button>
                                 )
                             }
-                    </form>
+                        </form>
+                    </div>
                 </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
-    );
-}
+        );
+    }
 }

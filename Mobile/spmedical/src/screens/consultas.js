@@ -10,6 +10,7 @@ import {
     FlatList,
     SafeAreaView,
 } from 'react-native';
+import { format } from "date-fns";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -74,17 +75,17 @@ export default class Consultas extends Component {
 
     renderItem = ({ item }) => (
         <View style={styles.cadaConsulta}>
-            
-                <Text>Data : {(item.dataConsulta)}</Text>
-                <Text>Situação : {this.renderSwitch(item.idSituacao)}</Text>
-            
-            
-                <Text>Médico : {(item.idMedicoNavigation.nome)}</Text>
-                <Text>Paciente : {(item.idPacienteNavigation.nomePaciente)}</Text>
-                {
-                    item.descricao != null ? <Text style={styles.semDescricao}>Sem Descrição</Text> : <Text>{item.descricao}</Text>
-                }
-            
+
+            <Text style={styles.texto}>Data : {format(item.dataConsulta, "dd-MM-YYYY")}</Text>
+            <Text>Situação : {this.renderSwitch(item.idSituacao)}</Text>
+
+
+            <Text>Médico : {(item.idMedicoNavigation.nome)}</Text>
+            <Text>Paciente : {(item.idPacienteNavigation.nomePaciente)}</Text>
+            {
+                item.descricao != null ? <Text style={styles.semDescricao}>Sem Descrição</Text> : <Text>{item.descricao}</Text>
+            }
+
         </View>
     )
 }
@@ -111,11 +112,11 @@ const styles = StyleSheet.create({
         marginTop: 10,
         borderBottomColor: '#05F2DB',
         borderBottomWidth: 3,
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
     },
     semDescricao: {
         color: 'red',
-        opacity : 0.6,
+        opacity: 0.6,
         marginBottom: 20
     },
     realizada: {

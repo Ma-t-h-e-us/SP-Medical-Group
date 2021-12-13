@@ -52,7 +52,7 @@ namespace SpMedicalGroup.webApi.Controllers
                 });
             } catch (Exception erro)
             {
-                return BadRequest(erro.Message);
+                return BadRequest("ERRO CABULOSO");
             }
             
         }
@@ -154,7 +154,7 @@ namespace SpMedicalGroup.webApi.Controllers
             });
         }
 
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult ListarTodas()
         {

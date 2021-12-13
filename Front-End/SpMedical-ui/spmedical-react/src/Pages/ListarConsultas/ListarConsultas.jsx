@@ -19,21 +19,54 @@ export default function ListarConsultas() {
     const [listaConsultas, setListaConsultas] = useState([]);
 
     function listarConsultas() {
-        axios('http://localhost:5000/api/Consultas/Listar/Minhas', {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-            }
-        })
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    console.log(resposta.data.listaConsultas);
-                    setListaConsultas(resposta.data.listaConsultas);
-                    console.log(listaConsultas);
+
+        if (usuarioAutenticado() && parseJwt().role === '1') {
+            axios('http://localhost:5000/api/Consultas', {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
                 }
             })
+                .then(resposta => {
+                    if (resposta.status === 200) {
+                        console.log(resposta.data);
+                        setListaConsultas(resposta.data);
+                        console.log(listaConsultas);
+                    }
+                })
 
-            .catch(erro => console.log(erro))
+                .catch(erro => console.log(erro))
+
+        } else {
+            axios('http://localhost:5000/api/Consultas/Listar/Minhas', {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+                }
+            })
+                .then(resposta => {
+                    if (resposta.status === 200) {
+                        console.log(resposta.data.listaConsultas);
+                        setListaConsultas(resposta.data.listaConsultas);
+                        console.log(listaConsultas);
+                    }
+                })
+
+                .catch(erro => console.log(erro))
+        }
+
     };
+
+    function renderSwitch(param) {
+        switch (param) {
+            case 1:
+                return <p style = {{color : '#02D66D', fontWeight : 'bold'}} >Realizada</p>     
+            case 2:
+                return <span style = {{color : 'red'}}>Cancelada</span>
+            case 3:
+                return <span style = {{color : 'blue'}}>Ajendada</span>
+            default:
+                return <span>Status desconhecido</span>
+        }
+    }
 
     useEffect(listarConsultas, []);
 
@@ -57,13 +90,16 @@ export default function ListarConsultas() {
                                         </div>
                                         <div className="span_ListarConsultas">
                                             <span>Paciente:</span>
-                                            <p key={consulta.idConsulta}>{consulta.IdPacienteNavigation.nomePaciente}</p>
+                                            <p key={consulta.idConsulta}>{consulta.idPacienteNavigation.nomePaciente}</p>
                                         </div>
                                         <div className="span_ListarConsultas">
                                             <span key={consulta.idConsulta}>{consulta.dataConsulta}</span>
                                         </div>
                                         <div className="span_ListarConsultas">
-                                            <span key={consulta.idConsulta}>{consulta.IdSituacaoNavigation.descricao}</span>
+                                            {consulta.descricao == '' ? <span style ={{color : 'red', opacity : 0.6}}>Sem descricao</span> : <span>{consulta.descricao}</span>}
+                                        </div>
+                                        <div className="span_ListarConsultas">
+                                            {renderSwitch(consulta.idSituacao)}
                                         </div>
                                         <svg height="33px" width="26px">
                                             <a href=""><polygon points="0,0 26,0 13,33" className="setinhaConsultas" /></a>
