@@ -22,7 +22,7 @@ namespace SpMedicalGroup.webApi.Interfaces
         void Deletar(int id);
 
 
-        void AlterarDescricao(string descricao, int id);
+        void AlterarDescricao(Consulta descricao, int id);
 
 
         Consulta BuscarPorId(int id);

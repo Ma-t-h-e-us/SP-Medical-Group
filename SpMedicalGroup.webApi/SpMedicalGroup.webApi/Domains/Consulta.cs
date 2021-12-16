@@ -10,10 +10,10 @@ namespace SpMedicalGroup.webApi.Domains
     {
         public long IdConsulta { get; set; }
 
-        [Required(ErrorMessage = "Id do médico necessário")]
+        //[Required(ErrorMessage = "Id do médico necessário")]
         public int? IdMedico { get; set; }
 
-        [Required(ErrorMessage = "Id do paciente necessário")]
+        //[Required(ErrorMessage = "Id do paciente necessário")]
         public int? IdPaciente { get; set; }
         public byte? IdSituacao { get; set; }
 

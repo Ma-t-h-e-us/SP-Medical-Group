@@ -10,6 +10,8 @@ import '../../assets/css/ListarConsultas.css';
 import '../../assets/css/Footer.css';
 import '../../assets/css/Header.css';
 
+import botaoEditar from '../../assets/img/botao-editar.png';
+
 //Componentes:
 import HeaderComum from '../../Components/Header/HeaderComum'
 import HeaderAdm from '../../Components/Header/HeaderAdm'
@@ -17,6 +19,10 @@ import Footer from '../../Components/Footer/footer'
 
 export default function ListarConsultas() {
     const [listaConsultas, setListaConsultas] = useState([]);
+    const [descricao, setDescricao] = useState('');
+    const [idConsulta, setIdConsulta] = useState(0);
+    const [editando, setEditando] = useState(false);
+
 
     function listarConsultas() {
 
@@ -55,14 +61,40 @@ export default function ListarConsultas() {
 
     };
 
+    function editarConsulta() {
+        axios.patch('http://localhost:5000/api/Consultas/Descricao/' + idConsulta, { descricao : descricao },
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+                }
+            })
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    console.log('Atualizado')
+                    setEditando(false);
+                    listarConsultas();
+                }
+            })
+            .catch(
+                setEditando(false),
+                console.log("Deu erro na descricao"))
+    }
+
+    function buscarConsulta(Consulta) {
+        setIdConsulta(Consulta.idConsulta);
+        setDescricao(Consulta.descricao);
+        setEditando(true)
+        console.log("consulta buscada")
+    }
+
     function renderSwitch(param) {
         switch (param) {
             case 1:
-                return <p style = {{color : '#02D66D', fontWeight : 'bold'}} >Realizada</p>     
+                return <p style={{ color: '#02D66D', fontWeight: 'bold' }} >Realizada</p>
             case 2:
-                return <span style = {{color : 'red'}}>Cancelada</span>
+                return <span style={{ color: 'red' }}>Cancelada</span>
             case 3:
-                return <span style = {{color : 'blue'}}>Ajendada</span>
+                return <span style={{ color: 'blue' }}>Ajendada</span>
             default:
                 return <span>Status desconhecido</span>
         }
@@ -95,15 +127,13 @@ export default function ListarConsultas() {
                                         <div className="span_ListarConsultas">
                                             <span key={consulta.idConsulta}>{consulta.dataConsulta}</span>
                                         </div>
-                                        <div className="span_ListarConsultas">
-                                            {consulta.descricao == '' ? <span style ={{color : 'red', opacity : 0.6}}>Sem descricao</span> : <span>{consulta.descricao}</span>}
+                                        <div style={{ width: 160 }} className="span_ListarConsultas">
+                                            {consulta.descricao == '' ? editando == true && idConsulta == consulta.idConsulta? <input type="text" value={descricao} onChange={(campo) => setDescricao(campo.target.value)} name="descricao" placeholder="Descrição"></input> : <span style={{ color: 'red', opacity: 0.6 }}>Sem descricao</span> : editando == true && idConsulta == consulta.idConsulta ? <input type="text" value={descricao} onChange={(campo) => setDescricao(campo.target.value)} name="descricao" placeholder="Descrição"></input> : <span>{consulta.descricao}</span>}
+                                            {usuarioAutenticado() && parseJwt().role == '2' ? editando == true && idConsulta == consulta.idConsulta? <button onClick={editarConsulta}>Concluir</button> : <button onClick={ () => buscarConsulta(consulta)} style={{ borderColor: 'transparent', backgroundColor: 'transparent' }}><img src={botaoEditar} style={{ width: 28 }} alt="Editar consulta" /></button> :  null}
                                         </div>
                                         <div className="span_ListarConsultas">
                                             {renderSwitch(consulta.idSituacao)}
                                         </div>
-                                        <svg height="33px" width="26px">
-                                            <a href=""><polygon points="0,0 26,0 13,33" className="setinhaConsultas" /></a>
-                                        </svg>
                                     </div>
                                 </div>
                             )

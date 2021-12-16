@@ -12,13 +12,13 @@ namespace SpMedicalGroup.webApi.Repositories
     public class ConsultaRepository : IConsultaRepository
     {
         SpMedicalContext ctx = new SpMedicalContext();
-        public void AlterarDescricao(string descricao, int id)
+        public void AlterarDescricao(Consulta descricao, int id)
         {
             Consulta consultaBuscada = BuscarPorId(id);
 
-            if (descricao != null)
+            if (descricao.Descricao != null)
             {
-                consultaBuscada.Descricao = descricao;
+                consultaBuscada.Descricao = descricao.Descricao;
                 ctx.Consulta.Update(consultaBuscada);
                 ctx.SaveChanges();
             };

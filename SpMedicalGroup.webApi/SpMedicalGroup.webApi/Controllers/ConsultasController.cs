@@ -113,7 +113,7 @@ namespace SpMedicalGroup.webApi.Controllers
             return BadRequest();
         }
 
-        [Authorize(Roles = "3")]
+        [Authorize(Roles = "2")]
         [HttpPatch("Descricao/{id}")]
         public IActionResult AlterarDescricao(Consulta ConsultaAtualizada, int id)
         {
@@ -145,7 +145,7 @@ namespace SpMedicalGroup.webApi.Controllers
                 });
             }
 
-            ConsultaRepositorio.AlterarDescricao(ConsultaAtualizada.Descricao, id);
+            ConsultaRepositorio.AlterarDescricao(ConsultaAtualizada, id);
 
             return Ok(new
             {
