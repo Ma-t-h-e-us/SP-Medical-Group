@@ -57,7 +57,7 @@ namespace SpMedicalGroup.webApi.Controllers
             
         }
 
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         [HttpPatch("Cancelar/{id}")]
         public IActionResult Cancelar(int id)
         {
@@ -68,10 +68,17 @@ namespace SpMedicalGroup.webApi.Controllers
                     Mensagem = "Id invalido ou inexistente"
                 });
             }
+            if(id == 2)
+            {
+                return Ok(new
+                {
+                    Mensagem = "Consulta já cancelada"
+                });
+            }
             ConsultaRepositorio.Cancelar(id);
             return StatusCode(204, new
             {
-                Mensagem = "A Consulta foi cancelada com sucesso"
+                Mensagem = "Status alterado com sucesso"
             });
         }
 

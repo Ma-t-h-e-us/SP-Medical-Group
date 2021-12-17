@@ -17,6 +17,18 @@ import NotFound from './Pages/NotFound/NotFound';
 
 import reportWebVitals from './reportWebVitals';
 
+const PermissaoLogado = ({ component: Component }) => (
+  <Route
+    render={(props) =>
+      usuarioAutenticado() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/login" />
+      )
+    }
+  />
+);
+
 const PermissaoAdm = ({ component: Component }) => (
   <Route
     render={(props) =>
@@ -57,10 +69,10 @@ const routing = (
     <div>
       <Switch>
         <Route exact path="/" component={Login} /> {/* Home */}
-        <Route path="/Home" component={Home} /> {/* Login */}
+        <PermissaoLogado path="/Home" component={Home} /> {/* Login */}
         <Route path="/Login" component={Login} /> {/* Login */}
-        <Route path="/ListarConsultas" component={ListarConsultas} /> {/* ListarConsultas  */}
-        <PermissaoAdm path="/NovaConsulta" component={NovaConsulta} /> 
+        <PermissaoLogado path="/ListarConsultas" component={ListarConsultas} /> {/* ListarConsultas  */}
+        <PermissaoAdm path="/NovaConsulta" component={NovaConsulta} />
         <Route path="/NotFound" component={NotFound} /> {/* Página não encontrada  */}
         <Redirect to="/NotFound" />
       </Switch>

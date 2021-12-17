@@ -40,8 +40,13 @@ namespace SpMedicalGroup.webApi.Repositories
         {
             Consulta consultaBuscada = BuscarPorId(Id);
 
-            consultaBuscada.IdSituacao = 2;
-            consultaBuscada.Descricao = "Consulta Cancelada";
+            if(consultaBuscada.IdSituacao == 2)
+            {
+                consultaBuscada.IdSituacao = 3;
+            } else
+            {
+                consultaBuscada.IdSituacao = 2;
+            }   
 
             ctx.Consulta.Update(consultaBuscada);
             ctx.SaveChanges();

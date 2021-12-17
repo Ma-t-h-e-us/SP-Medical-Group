@@ -21,7 +21,9 @@ export default function ListarConsultas() {
     const [listaConsultas, setListaConsultas] = useState([]);
     const [descricao, setDescricao] = useState('');
     const [idConsulta, setIdConsulta] = useState(0);
+    const [idSituacao, setIdSituacao] = useState(0);
     const [editando, setEditando] = useState(false);
+    const [editandoSituacao, setEditandoSituacao] = useState(false);
 
 
     function listarConsultas() {
@@ -62,7 +64,7 @@ export default function ListarConsultas() {
     };
 
     function editarConsulta() {
-        axios.patch('http://localhost:5000/api/Consultas/Descricao/' + idConsulta, { descricao : descricao },
+        axios.patch('http://localhost:5000/api/Consultas/Descricao/' + idConsulta, { descricao: descricao },
             {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -80,10 +82,33 @@ export default function ListarConsultas() {
                 console.log("Deu erro na descricao"))
     }
 
+    function editarSituacao(Consulta) {
+        setIdConsulta(Consulta.idConsulta);
+        setEditandoSituacao(true);
+        console.log(localStorage.getItem('usuario-login'));
+        axios.patch('http://localhost:5000/api/Consultas/Cancelar/' + idConsulta,
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+                }
+            })
+            .then(resposta => {
+                if (resposta.status === 204) {
+                    console.log('Situação alterada');
+                    setEditandoSituacao(false);
+                    listarConsultas();
+                }
+            })
+            .catch(
+                setEditandoSituacao(false),
+                console.log("Erro situação")
+            );
+    }
+
     function buscarConsulta(Consulta) {
         setIdConsulta(Consulta.idConsulta);
         setDescricao(Consulta.descricao);
-        setEditando(true)
+        setEditando(true);
         console.log("consulta buscada")
     }
 
@@ -128,11 +153,12 @@ export default function ListarConsultas() {
                                             <span key={consulta.idConsulta}>{consulta.dataConsulta}</span>
                                         </div>
                                         <div style={{ width: 160 }} className="span_ListarConsultas">
-                                            {consulta.descricao == '' ? editando == true && idConsulta == consulta.idConsulta? <input type="text" value={descricao} onChange={(campo) => setDescricao(campo.target.value)} name="descricao" placeholder="Descrição"></input> : <span style={{ color: 'red', opacity: 0.6 }}>Sem descricao</span> : editando == true && idConsulta == consulta.idConsulta ? <input type="text" value={descricao} onChange={(campo) => setDescricao(campo.target.value)} name="descricao" placeholder="Descrição"></input> : <span>{consulta.descricao}</span>}
-                                            {usuarioAutenticado() && parseJwt().role == '2' ? editando == true && idConsulta == consulta.idConsulta? <button onClick={editarConsulta}>Concluir</button> : <button onClick={ () => buscarConsulta(consulta)} style={{ borderColor: 'transparent', backgroundColor: 'transparent' }}><img src={botaoEditar} style={{ width: 28 }} alt="Editar consulta" /></button> :  null}
+                                            {consulta.descricao == '' ? editando == true && idConsulta == consulta.idConsulta ? <input type="text" value={descricao} onChange={(campo) => setDescricao(campo.target.value)} name="descricao" placeholder="Descrição"></input> : <span style={{ color: 'red', opacity: 0.6 }}>Sem descricao</span> : editando == true && idConsulta == consulta.idConsulta ? <input type="text" value={descricao} onChange={(campo) => setDescricao(campo.target.value)} name="descricao" placeholder="Descrição"></input> : <span>{consulta.descricao}</span>}
+                                            {usuarioAutenticado() && parseJwt().role == '2' ? editando == true && idConsulta == consulta.idConsulta ? <button onClick={editarConsulta}>Concluir</button> : <button onClick={() => buscarConsulta(consulta)} style={{ borderColor: 'transparent', backgroundColor: 'transparent' }}><img src={botaoEditar} style={{ width: 28 }} alt="Editar consulta" /></button> : null}
                                         </div>
                                         <div className="span_ListarConsultas">
                                             {renderSwitch(consulta.idSituacao)}
+                                            {parseJwt().role == '1' && consulta.idSituacao != 1 ? <button onClick={() => editarSituacao(consulta)} style={{ borderColor: 'transparent', backgroundColor: 'transparent' }}><img src={botaoEditar} style={{ width: 28 }} alt="Editar consulta" /></button> : null}
                                         </div>
                                     </div>
                                 </div>
