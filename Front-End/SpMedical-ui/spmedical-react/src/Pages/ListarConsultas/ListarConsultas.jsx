@@ -28,8 +28,8 @@ export default function ListarConsultas() {
 
     function listarConsultas() {
 
-        if (usuarioAutenticado() && parseJwt().role === '1') {
-            axios('http://localhost:5000/api/Consultas', {
+       
+            axios('https://620558c3161670001741b96a.mockapi.io/consulta', {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
                 }
@@ -43,23 +43,6 @@ export default function ListarConsultas() {
                 })
 
                 .catch(erro => console.log(erro))
-
-        } else {
-            axios('http://localhost:5000/api/Consultas/Listar/Minhas', {
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-                }
-            })
-                .then(resposta => {
-                    if (resposta.status === 200) {
-                        console.log(resposta.data.listaConsultas);
-                        setListaConsultas(resposta.data.listaConsultas);
-                        console.log(listaConsultas);
-                    }
-                })
-
-                .catch(erro => console.log(erro))
-        }
 
     };
 
@@ -143,11 +126,11 @@ export default function ListarConsultas() {
                                     <div className="cadaConsulta_ListarConsultas">
                                         <div className="span_ListarConsultas">
                                             <span>Médico:</span>
-                                            <p key={consulta.idConsulta}>{consulta.idMedicoNavigation.nome}</p>
+                                            <p key={consulta.idConsulta}>{consulta.idMedico.nome}</p>
                                         </div>
                                         <div className="span_ListarConsultas">
                                             <span>Paciente:</span>
-                                            <p key={consulta.idConsulta}>{consulta.idPacienteNavigation.nomePaciente}</p>
+                                            <p key={consulta.idConsulta}>{consulta.idPaciente.nomePaciente}</p>
                                         </div>
                                         <div className="span_ListarConsultas">
                                             <span key={consulta.idConsulta}>{consulta.dataConsulta}</span>

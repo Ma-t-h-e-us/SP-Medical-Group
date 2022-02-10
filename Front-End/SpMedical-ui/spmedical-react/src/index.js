@@ -68,10 +68,10 @@ const routing = (
   <Router>
     <div>
       <Switch>
-        <Route exact path="/" component={Login} /> {/* Home */}
+        <Route exact path="/" component={Home} /> {/* Home */}
         <PermissaoLogado path="/Home" component={Home} /> {/* Login */}
         <Route path="/Login" component={Login} /> {/* Login */}
-        <PermissaoLogado path="/ListarConsultas" component={ListarConsultas} /> {/* ListarConsultas  */}
+        <Route path="/ListarConsultas" component={ListarConsultas} /> {/* ListarConsultas  */}
         <PermissaoAdm path="/NovaConsulta" component={NovaConsulta} />
         <Route path="/NotFound" component={NotFound} /> {/* Página não encontrada  */}
         <Redirect to="/NotFound" />

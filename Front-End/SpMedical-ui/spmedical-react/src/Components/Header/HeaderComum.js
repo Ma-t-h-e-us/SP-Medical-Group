@@ -19,9 +19,7 @@ class Header extends Component {
                 <Link to="/Home"><img src={logo} alt="logo SpMedicalGroup"></img></Link>
                     <nav class="navHeader">
                         <Link to="/ListarConsultas"><a href="">Consultas</a></Link>
-                        {
-                           usuarioAutenticado() && parseJwt().role === '1' ? <Link to="/NovaConsulta"><a href="">Cadastrar Consulta</a></Link> : null
-                        }
+                        <Link to="/NovaConsulta"><a href="">Cadastrar Consulta</a></Link>
                         <Link to="/Login"><a href="" onClick={this.logout}>Sair</a></Link>
                     </nav>
                 </div>
